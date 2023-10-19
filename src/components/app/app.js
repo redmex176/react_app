@@ -32,11 +32,34 @@ class App extends Component {
         
     }
 
+    onTogleIncrease = (id) =>{
+       this.setState(({data}) => ({
+            data : data.map(item => {
+                if(item.id === id) {
+                    return { ...item, increase: !item.increase}
+                } 
+                return item;
+            })
+       }))
+    }
+
+    onTogleLike = (id) =>{
+        this.setState(({data}) => ({
+            data : data.map(item => {
+                if(item.id === id) {
+                    return { ...item, like: !item.like}
+                } 
+                return item;
+            })
+       }))
+    }
+
     addItem = (name, salary) => {
         const newItem = {
             name, 
             salary,
             increase: false,
+            like: false,
             id: this.maxId++
         }
         this.setState(({data}) => {
@@ -50,9 +73,14 @@ class App extends Component {
     render () {
 
         const {data} = this.state;
+        const employees = this.state.data.length;
+        const increased = this.state.data.filter(item => item.increase).length;
+
         return (
             <div className="app">
-                <AppInfo/>
+                <AppInfo 
+                employees={employees}
+                increased={increased}/>
                 
                 <div className="search-panel">
                     <SearchPanel/>
@@ -61,7 +89,9 @@ class App extends Component {
     
                 <EmployeesList 
                 data={data}
-                onDelete={this.onDelete}
+                deleteItem={this.onDelete}
+                onTogleIncrease={this.onTogleIncrease}
+                onTogleLike={this.onTogleLike}
                 />
 
                 <EmployeesAddForm onAdd = {this.addItem}/>
