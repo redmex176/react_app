@@ -115,7 +115,8 @@ class App extends Component {
                 increased={increased}/>
                 
                 <div className="search-panel">
-                    <SearchPanel/>
+                    <SearchPanel 
+                    onUpdateSearch={this.onUpdateSearch}/>
                     <AppFilter
                     onFilterSelect={this.onFilterSelect}/>
                 </div>
@@ -132,7 +133,8 @@ class App extends Component {
             </div>
         );
     }
-    
-}
+
+
+};
 
 export default App;

@@ -1,3 +1,4 @@
+import { Component } from "react";
 import "./app-filter.css";
 
 const AppFilter = (props) => {
@@ -26,5 +27,10 @@ const AppFilter = (props) => {
         </div>
     )
 }
+
+
+
+ 
+
 
 export default AppFilter;
